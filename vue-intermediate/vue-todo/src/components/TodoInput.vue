@@ -17,6 +17,7 @@
 
 <script>
 import ModalExam from "./common/ModalExam.vue";
+import {mapMutations} from "vuex";
 
 export default{
   data(){
@@ -26,9 +27,13 @@ export default{
     }
   },
   methods: {
+    ...mapMutations([
+      'addOneItem'
+    ]),
+
     addTodo(){
       if(this.newTodoItem!==''){
-        this.$store.commit('addOneItem', this.newTodoItem);
+        this.addOneItem(this.newTodoItem)
         this.clearInput();
       } else{
         this.showModal=!this.showModal;
